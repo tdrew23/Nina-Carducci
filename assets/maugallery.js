@@ -110,24 +110,9 @@
     },
     responsiveImageItem(element) {
       if (element.prop("tagName") === "IMG") {
-        const imgSrc = element.attr('src');
-        const imgWebP = imgSrc.replace(/\.(jpg|jpeg|png)$/, '.webp'); // Format WebP si disponible
-        
         element.addClass("img-fluid");
-        element.attr("loading", "lazy"); // Lazy loading
-    
-        const picture = `
-          <picture>
-            <source srcset="${imgWebP}" type="image/webp">
-            <source srcset="${imgSrc} 600w, ${imgSrc} 1200w" sizes="(max-width: 600px) 600px, 1200px">
-            <img src="${imgSrc}" alt="${element.attr('alt')}" class="img-fluid" loading="lazy">
-          </picture>
-        `;
-    
-        element.replaceWith(picture); // Remplace l'élément par le <picture> pour prioriser WebP
       }
     },
-    
     openLightBox(element, lightboxId) {
       $(`#${lightboxId}`)
         .find(".lightboxImage")
